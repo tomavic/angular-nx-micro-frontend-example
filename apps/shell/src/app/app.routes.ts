@@ -3,7 +3,7 @@ import { NotFoundComponent } from './not-found.component';
 
 export const appRoutes: Route[] = [
   {
-    path: 'login',
+    path: '',
     loadChildren: () => import('login/Module').then((m) => m.LoginModule),
   },
 
