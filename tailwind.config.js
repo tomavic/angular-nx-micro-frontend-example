@@ -1,24 +1,44 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./apps/shell/src/**'],
-  content: ['./apps/login/src/**'],
+  content: ['./apps/shell/src/**', './apps/login/src/**'],
+  plugins: [
+    // ...
+    require('@tailwindcss/forms'),
+  ],
   theme: {
+    screens: {
+      sm: '640px',
+      // => @media (min-width: 640px) { ... }
+
+      md: '768px',
+      // => @media (min-width: 768px) { ... }
+
+      lg: '1024px',
+      // => @media (min-width: 1024px) { ... }
+
+      xl: '1280px',
+      // => @media (min-width: 1280px) { ... }
+
+      '2xl': '1536px',
+      // => @media (min-width: 1536px) { ... }
+    },
+
     extend: {
-      screens: {
-        sm: '640px',
-        // => @media (min-width: 640px) { ... }
-
-        md: '768px',
-        // => @media (min-width: 768px) { ... }
-
-        lg: '1024px',
-        // => @media (min-width: 1024px) { ... }
-
-        xl: '1280px',
-        // => @media (min-width: 1280px) { ... }
-
-        '2xl': '1536px',
-        // => @media (min-width: 1536px) { ... }
+      spacing: {
+        100: '16px',
+        125: '20px',
+        150: '24px',
+        175: '28px',
+        200: '32px',
+        225: '36px',
+        250: '40px',
+        300: '48px',
+        350: '56px',
+        400: '64px',
+        450: '72px',
+        500: '80px',
+        525: '84px',
+        600: '96px',
       },
       colors: {
         primary: {
@@ -42,7 +62,6 @@ module.exports = {
           500: '#262626',
           600: '#0d0d0d ',
         },
-        black: '#111111',
         gray: {
           100: '#F8F8F8',
           200: '#EAEAEA',
@@ -54,22 +73,6 @@ module.exports = {
           800: '#262626',
           900: '#171717',
         },
-      },
-      spacing: {
-        100: '16px',
-        125: '20px',
-        150: '24px',
-        175: '28px',
-        200: '32px',
-        225: '36px',
-        250: '40px',
-        300: '48px',
-        350: '56px',
-        400: '64px',
-        450: '72px',
-        500: '80px',
-        525: '84px',
-        600: '96px',
       },
       boxShadow: {
         xs: '0 1px 3px 0 rgba(0,0,0,0.6)',
