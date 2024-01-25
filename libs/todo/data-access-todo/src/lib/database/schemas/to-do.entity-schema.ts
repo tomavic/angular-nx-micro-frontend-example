@@ -7,7 +7,7 @@ export const ToDoEntitySchema = new EntitySchema<ITodo>({
     id: {
       type: 'uuid',
       primary: true,
-      generated: true,
+      generated: 'uuid',
     },
     title: {
       type: String,
