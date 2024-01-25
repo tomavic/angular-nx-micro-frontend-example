@@ -17,6 +17,9 @@
     "paths": {
       "@org/libs/feature-todo": ["libs/feature-todo/src/index.ts"],
       "@org/libs/todo/dashboard": ["libs/todo/dashboard/src/index.ts"],
+      "@org/libs/todo/data-access-todo": [
+        "libs/todo/data-access-todo/src/index.ts"
+      ],
       "@org/shared/domain": ["libs/shared/src/index.ts"]
     }
   },

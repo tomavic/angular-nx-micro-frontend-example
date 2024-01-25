@@ -38,7 +38,7 @@
       }
     },
     "lint": {
-      "executor": "@nx/eslint:lint",
+      "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"]
     },
     "test": {

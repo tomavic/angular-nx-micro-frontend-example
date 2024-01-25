@@ -1,0 +1,35 @@
+{
+  "name": "data-access-todo",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/todo/data-access-todo/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/todo/data-access-todo",
+        "tsConfig": "libs/todo/data-access-todo/tsconfig.lib.json",
+        "packageJson": "libs/todo/data-access-todo/package.json",
+        "main": "libs/todo/data-access-todo/src/index.ts",
+        "assets": ["libs/todo/data-access-todo/*.md"]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs data-access-todo {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/todo/data-access-todo/jest.config.ts"
+      }
+    }
+  },
+  "tags": ["type:data-access", "scope:server"]
+}

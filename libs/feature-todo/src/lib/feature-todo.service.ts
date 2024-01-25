@@ -1,38 +1,30 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { ToDoEntitySchema } from '@org/libs/todo/data-access-todo';
 import { ITodo } from '@org/shared/domain';
-import { BehaviorSubject } from 'rxjs';
+
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class FeatureTodoService {
-  private todos$$ = new BehaviorSubject<ITodo[]>([
-    {
-      id: 'something-something-dark-side',
-      title: 'Add a route to create todo items!',
-      description: 'Yes, this is foreshadowing a POST route introduction',
-      completed: false,
-    },
-  ]);
+  constructor(
+    @InjectRepository(ToDoEntitySchema)
+    private todoRepository: Repository<ITodo>
+  ) {}
 
-  getAll(): ITodo[] {
-    return this.todos$$.value;
+  async getAll(): Promise<ITodo[]> {
+    return await this.todoRepository.find();
   }
 
-  create(todo: Pick<ITodo, 'title' | 'description'>): ITodo {
-    const current = this.todos$$.value;
-    // Use the incoming data, a randomized ID, and a default value of `false` to create the new to-do
-    const newTodo: ITodo = {
-      ...todo,
-      id: `todo-${Math.floor(Math.random() * 10000)}`,
-      completed: false,
-    };
-    this.todos$$.next([...current, newTodo]);
+  async create(todo: Pick<ITodo, 'title' | 'description'>): Promise<ITodo> {
+    const newTodo = await this.todoRepository.save({ ...todo });
     return newTodo;
   }
 
-  getOne(id: string): ITodo {
-    const todo = this.todos$$.value.find((td) => td.id === id);
+  async getOne(id: string): Promise<ITodo> {
+    const todo = await this.todoRepository.findOneBy({ id });
     if (!todo) {
-      throw new NotFoundException(`Todo could not be found!`);
+      throw new NotFoundException(`To-do could not be found!`);
     }
     return todo;
   }

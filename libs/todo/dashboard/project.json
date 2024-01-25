@@ -3,7 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/todo/dashboard/src",
   "prefix": "org",
-  "tags": ["type:feature", "scope:client"],
+  "tags": ["type:feature", "scope:shell"],
   "projectType": "library",
   "targets": {
     "build": {
