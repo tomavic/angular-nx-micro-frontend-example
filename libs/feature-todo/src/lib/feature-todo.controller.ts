@@ -3,7 +3,7 @@ import { FeatureTodoService } from './feature-todo.service';
 import { ITodo } from '@org/shared/domain';
 import { CreateTodoDto } from './dtos/todo.dto';
 
-@Controller('feature-todo')
+@Controller('todos')
 export class FeatureTodoController {
   constructor(private featureTodoService: FeatureTodoService) {}
 

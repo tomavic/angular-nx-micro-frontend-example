@@ -1,0 +1,51 @@
+{
+  "name": "feature-dashboard",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/todo/dashboard/src",
+  "prefix": "org",
+  "tags": ["type:feature", "scope:client"],
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "libs/todo/dashboard/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/todo/dashboard/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/todo/dashboard/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/todo/dashboard/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/todo/dashboard/**/*.ts",
+          "libs/todo/dashboard/**/*.html",
+          "libs/todo/dashboard/package.json"
+        ]
+      }
+    }
+  }
+}
